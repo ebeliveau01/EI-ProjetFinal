@@ -1,24 +1,38 @@
 using UnityEngine;
 
 public class AI : MonoBehaviour {
+    /// <summary>
+    /// Le prefab de la ball de backetball
+    /// </summary>
     [SerializeField]
     private GameObject ballPrefab;
 
+    /// <summary>
+    /// Le point de lancer pour l'ia
+    /// </summary>
     [SerializeField]
     private Transform shootPoint;
     
+    /// <summary>
+    /// Le point que l'ia vise
+    /// </summary>
     [SerializeField]
     private Transform targetHoop;
     
+    /// <summary>
+    /// Les différents mode difficulté possible de l'ia
+    /// </summary>
     private enum Difficulty { MEDIUM, HARD, IMPOSSIBLE }
 
+    /// <summary>
+    /// Le mode de difficulté sélectionnée pour l'ia
+    /// </summary>
     [SerializeField]
     private Difficulty difficulty = Difficulty.MEDIUM;
 
-    private void Start() {
-        // Invoke(nameof(ShootBall), 5f);
-    }
-
+    /// <summary>
+    /// Méthode qui effectue un lancer de ballon pour l'ia
+    /// </summary>
     public void ShootBall() {
         GameObject ball = Instantiate(ballPrefab, shootPoint.position, Quaternion.identity);
         Rigidbody ballRb = ball.GetComponent<Rigidbody>();
@@ -26,13 +40,14 @@ public class AI : MonoBehaviour {
         Vector3 error = GetError();
         Vector3 targetPosition = targetHoop.position + error;
 
-        Vector3 velocity = CalculateLaunchVelocity(targetPosition, true);
+        Vector3 velocity = CalculateLaunchVelocity(targetPosition);
 
-        // TODO => Test which one is better to use
-        // ballRb.linearVelocity = velocity;
         ballRb.AddForce(velocity, ForceMode.VelocityChange);
     }
 
+    /// <summary>
+    /// Méthode qui permet d'obtenir la marge d'erreur dans le lancer de l'ia selon sa difficulté
+    /// </summary>
     private Vector3 GetError() {
         float errorRange = 0f;
 
@@ -63,9 +78,8 @@ public class AI : MonoBehaviour {
     /// </credit>
     /// </summary>
     /// <param name="target">La position choisie par l'ia pour lancer le ballon</param>
-    /// <param name="preferHighArc">Quelle sorte de trajectoire à utiliser selon la difficulté de l'ia, haute ou basse</param>
     /// <returns>La vélocité qui permet au ballon d'atteindre un point choisie par l'ia</returns>
-    private Vector3 CalculateLaunchVelocity(Vector3 target, bool preferHighArc) {
+    private Vector3 CalculateLaunchVelocity(Vector3 target) {
         Vector3 toTarget = target - shootPoint.position;
         Vector3 toTargetXZ = new Vector3(toTarget.x, 0, toTarget.z);
 
@@ -90,9 +104,7 @@ public class AI : MonoBehaviour {
 
         float sqrt = Mathf.Sqrt(underTheSqrt);
 
-        float angleHigh = Mathf.Atan((speedSquared + sqrt) / (gravity * x));
-
-        float chosenAngle = angleHigh;
+        float chosenAngle = Mathf.Atan((speedSquared + sqrt) / (gravity * x));
 
         Vector3 velocity = toTargetXZ.normalized * launchSpeed * Mathf.Cos(chosenAngle);
         velocity.y = launchSpeed * Mathf.Sin(chosenAngle);
@@ -101,11 +113,25 @@ public class AI : MonoBehaviour {
     }
 
     /* ****** Pour le Debugging ****** */
+
+    /// <summary>
+    /// Le nombre de point à afficher
+    /// </summary>
     [SerializeField]
     private uint gizmoPointCount = 20;
+
+    /// <summary>
+    /// La couleur des points qui sont affichés
+    /// </summary>
     [SerializeField]
     private Color gizmoColor = Color.red;
 
+    /// <summary>
+    /// Méthode qui permet de dessiner les points possibles de lancer de l'ia seulement lorsque sélectionner
+    ///
+    /// <credit> Méthode générée en partie par Chatgpt et adaptée pour notre situation. OpenAI. (2025). ChatGPT GPT-4o (version 20 mars 2025) [Modèle massif de langage]. https://chat.openai.com/chat </credit>
+    ///
+    /// </summary>
     private void OnDrawGizmosSelected() {
         if (targetHoop == null || shootPoint == null)
             return;
@@ -122,8 +148,14 @@ public class AI : MonoBehaviour {
         DrawTrajectory(shootPoint.position, targetHoop.position);
     }
 
+    /// <summary>
+    /// Méthode qui permet de dessiner la trajectoire parfaite du ballon 
+    ///
+    /// <credit> Méthode générée par Chatgpt. OpenAI. (2025). ChatGPT GPT-4o (version 20 mars 2025) [Modèle massif de langage]. https://chat.openai.com/chat </credit>
+    ///
+    /// </summary>
     private void DrawTrajectory(Vector3 startPoint, Vector3 targetPoint) {
-        Vector3 velocity = CalculateLaunchVelocity(targetPoint, true);
+        Vector3 velocity = CalculateLaunchVelocity(targetPoint);
 
         Vector3 previousPoint = startPoint;
         float simulationTimeStep = 0.05f;

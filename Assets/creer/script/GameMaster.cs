@@ -2,37 +2,78 @@ using System.Collections;
 using UnityEngine;
 
 public class GameMaster : MonoBehaviour {
+    /// <summary>
+    /// Un singleton static du script
+    /// </summary>
     public static GameMaster Instance;
 
+    /// <summary>
+    /// Le score du joueur
+    /// </summary>
     private int playerScore = 0;
+    
+    /// <summary>
+    /// Le score de l'ia
+    /// </summary>
     private int aiScore = 0;
 
+    /// <summary>
+    /// Le score qui est requis afin de gagner la partie
+    /// </summary>
     [SerializeField]
     private int score2Win = 21;
 
+    /// <summary>
+    /// Variable qui permet de vérifier si c'est le tour au joueur de jouer
+    /// </summary>
     private bool playerTurn = true;
+
+    /// <summary>
+    /// Variable qui permet de vérifier si le jeu est toujours actif
+    /// </summary>
     private bool gameActive = true;
 
+    /// <summary>
+    /// La position du joueur dans l'espace
+    /// </summary>
     [SerializeField]
     private Transform playerTransform;
     
+    /// <summary>
+    /// Le préfab de la ball de backetball
+    /// </summary>
     [SerializeField]
     private GameObject ballPrefab;
     
+    /// <summary>
+    /// L'ia
+    /// </summary>
     [SerializeField]
     private AI ai;
 
+    /// <summary>
+    /// La source d'audio
+    /// </summary>
     [SerializeField]
     private AudioSource audio;
 
+    /// <summary>
+    /// Méthode qui s'exécute au lancement du script
+    /// </summary>
     private void Awake() {
         Instance = this;
     }
 
+    /// <summary>
+    /// Méthode qui s'exécute au lancement du jeu
+    /// </summary>
     private void Start() {
         StartGame();
     }
 
+    /// <summary>
+    /// Méthode qui permet de lancer le jeu
+    /// </summary>
     private void StartGame() {
         playerScore = 0;
         aiScore = 0;
@@ -42,6 +83,9 @@ public class GameMaster : MonoBehaviour {
         StartNextTurn();
     }
 
+    /// <summary>
+    /// Méthode qui est lancer à chaque fois qu'un but est détecter
+    /// </summary>
     public void OnScore() {
         if (!gameActive) return;
 
@@ -60,24 +104,31 @@ public class GameMaster : MonoBehaviour {
         StartNextTurn();
     }
 
+    /// <summary>
+    /// Méthode qui permet de valider si la condition de victoire à été atteinte par le joueur ou l'ia
+    /// </summary>
     private void CheckWinCondition() {
         if (playerScore >= score2Win) {
             gameActive = false;
-            Debug.Log("Player Wins!");
             EndGame.Instance.Show(true, playerScore, aiScore);
         }
         else if (aiScore >= score2Win) {
             gameActive = false;
-            Debug.Log("AI Wins!");
             EndGame.Instance.Show(false, playerScore, aiScore);
         }
     }
 
+    /// <summary>
+    /// Méthode qui permet de commencer le prochain tour lorsqu'un tir est manqué
+    /// </summary>
     public void StartNextTurnMiss() {
         playerTurn = !playerTurn;
         StartNextTurn();
     }
 
+    /// <summary>
+    /// MÉthode qui permet de lancer le prochain tour lorsqu'un but est détecté
+    /// </summary>
     private void StartNextTurn() {
         if (!gameActive) return;
 
@@ -89,14 +140,15 @@ public class GameMaster : MonoBehaviour {
             spawnPosition.y = 0f;
 
             GameObject newBall = Instantiate(ballPrefab, spawnPosition, Quaternion.identity);
-            Debug.Log("Player's turn!");
         }
         else {
             StartCoroutine(DelayedAIShoot(1f));
-            Debug.Log("AI's turn!");
         }
     }
-
+    
+    /// <summary>
+    /// Coroutine qui permet d'ajouter un délai dans le tir de l'ia au changement de tour
+    /// </summary>
     private IEnumerator DelayedAIShoot(float delay) {
         yield return new WaitForSeconds(delay);
         ai.ShootBall();

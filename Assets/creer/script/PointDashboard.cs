@@ -51,6 +51,9 @@ public class PointDashboard : MonoBehaviour {
         UpdateInterfaceText();
     }
 
+    /// <summary>
+    /// Méthode qui permet de mettre à jour le texte dans l'interface
+    /// </summary>
     private void UpdateInterfaceText() {
         pointDashboardText.SetText($"Joueur: {nbrPointJoueur1}\nIA: {nbrPointJoueur2}");
     }
