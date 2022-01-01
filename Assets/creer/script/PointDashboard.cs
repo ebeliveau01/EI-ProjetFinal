@@ -52,6 +52,6 @@ public class PointDashboard : MonoBehaviour {
     }
 
     private void UpdateInterfaceText() {
-        pointDashboardText.SetText($"Joueur 1 /Name/: {nbrPointJoueur1}\nJoueur 2 /Name/: {nbrPointJoueur2}");
+        pointDashboardText.SetText($"Joueur: {nbrPointJoueur1}\nIA: {nbrPointJoueur2}");
     }
 }

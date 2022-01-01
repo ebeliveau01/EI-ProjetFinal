@@ -64,10 +64,12 @@ public class GameMaster : MonoBehaviour {
         if (playerScore >= score2Win) {
             gameActive = false;
             Debug.Log("Player Wins!");
+            EndGame.Instance.Show(true, playerScore, aiScore);
         }
         else if (aiScore >= score2Win) {
             gameActive = false;
             Debug.Log("AI Wins!");
+            EndGame.Instance.Show(false, playerScore, aiScore);
         }
     }
 
@@ -83,6 +85,8 @@ public class GameMaster : MonoBehaviour {
             Transform spawnPoint = playerTransform;
             Vector3 forwardOffset = spawnPoint.forward * 1f;
             Vector3 spawnPosition = spawnPoint.position + forwardOffset;
+
+            spawnPosition.y = 0f;
 
             GameObject newBall = Instantiate(ballPrefab, spawnPosition, Quaternion.identity);
             Debug.Log("Player's turn!");
