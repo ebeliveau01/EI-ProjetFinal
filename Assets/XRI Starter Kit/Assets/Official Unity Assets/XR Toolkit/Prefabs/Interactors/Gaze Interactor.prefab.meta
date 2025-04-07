@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: b84cd05e1160fe34cab2585022c8cd99
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 170222
+  packageName: XR Interaction ToolKit Starter Kit
+  packageVersion: 1.6.250208
+  assetPath: Assets/XRI Starter Kit/Assets/Official Unity Assets/XR Toolkit/Prefabs/Interactors/Gaze
+    Interactor.prefab
+  uploadId: 731461

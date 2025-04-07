@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: ae1968658b9687b47976fe86c062168f
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 170222
+  packageName: XR Interaction ToolKit Starter Kit
+  packageVersion: 1.6.250208
+  assetPath: Assets/XRI Starter Kit/Assets/Official Unity Assets/XR Toolkit/Prefabs/Teleport/Climb
+    Teleport Arrow.prefab
+  uploadId: 731461
