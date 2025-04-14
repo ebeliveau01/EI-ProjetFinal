@@ -6,9 +6,13 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
+    path: Assets/creer/scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/creer/scenes/TestBall.unity
+    guid: 8336aa9bb97cfe342992665a6ae96621
   m_configObjects:
+    Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 305296acc180e7c4d9dbd9dbdadd67e0, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
     com.unity.xr.arfoundation.simulation_settings: {fileID: 11400000, guid: e8e5b48f7cd54be4097ff27c25073b5c, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 6a04bcc7a8d351e4d8bec2cbfa1b3861, type: 2}
