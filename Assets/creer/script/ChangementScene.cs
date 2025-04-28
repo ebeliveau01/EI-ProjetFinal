@@ -1,20 +1,64 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro; // Utiliser TextMesh Pro
+
 public class ChangementScene : MonoBehaviour
 {
-    // Nom de la scène à charger
-    public string sceneName;
+    public GameObject dropdownObject; 
 
-    // Fonction à appeler depuis un bouton UI
-    public void LoadScene()
+    private TMP_Dropdown dropdown; 
+
+    private void Start()
     {
-        if (!string.IsNullOrEmpty(sceneName))
+        // Trouver le Dropdown au lancement si besoin
+        if (dropdownObject == null)
         {
-            SceneManager.LoadScene(sceneName);
+            dropdownObject = GameObject.FindGameObjectWithTag("dropdown");
+        }
+        if (dropdownObject != null)
+        {
+            dropdown = dropdownObject.GetComponent<TMP_Dropdown>(); 
         }
         else
         {
-            Debug.LogWarning("Le nom de la scène est vide !");
+            Debug.LogError("Dropdown introuvable !");
+        }
+    }
+
+    public void LoadScene()
+    {
+        if (dropdown == null)
+        {
+            Debug.LogError("Dropdown non assigné !");
+            return;
+        }
+
+        // Récupérer l'index de l'élément sélectionné
+        int selectedIndex = dropdown.value;
+        string selectedSceneName = ""; // Initialiser la variable
+
+        // Définir le nom de la scène en fonction de l'index sélectionné
+        if (selectedIndex == 0)
+        {
+            selectedSceneName = "map_urbain";
+        }
+        else if (selectedIndex == 1)
+        {
+            selectedSceneName = "map_nature";
+        }
+        else if (selectedIndex == 2)
+        {
+            selectedSceneName = "map_plage";
+        }
+
+        // Vérifier que le nom de la scène est bien assigné
+        if (!string.IsNullOrEmpty(selectedSceneName))
+        {
+            SceneManager.LoadScene(selectedSceneName);
+        }
+        else
+        {
+            Debug.LogWarning("Le nom de la scène sélectionnée est vide ou non défini !");
         }
     }
 }
