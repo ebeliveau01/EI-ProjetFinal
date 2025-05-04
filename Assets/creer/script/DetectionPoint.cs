@@ -1,15 +1,21 @@
 using UnityEngine;
 
 public class DetectionPoint : MonoBehaviour {
-    private void OnTriggerEnter(Collider other) {
-        Debug.Log("Score valide!");
+    [SerializeField]
+    private bool realPoint;
 
+    private void OnTriggerEnter(Collider other) {
         if (other.CompareTag("Ball")) {
+
             Rigidbody ballRb = other.GetComponent<Rigidbody>();
-            if (ballRb != null && ballRb.linearVelocity.y < 0)
-                Debug.Log("Score valide!");
+            Ball ball = other.GetComponent<Ball>();
+            if (ballRb != null && ballRb.linearVelocity.y < 0) {
+                if (realPoint) Debug.Log("Valid Score!"); else Debug.Log("Better chance later!");
+                GameMaster.Instance.OnScore(realPoint);
+                ball.OnScore();
+            }
             else
-                Debug.Log("Score Invalide!");
+                Debug.Log("Invalid Score!");
         }
     }
 }

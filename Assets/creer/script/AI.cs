@@ -16,10 +16,10 @@ public class AI : MonoBehaviour {
     private Difficulty difficulty = Difficulty.MEDIUM;
 
     private void Start() {
-        Invoke(nameof(ShootBall), 5f);
+        // Invoke(nameof(ShootBall), 5f);
     }
 
-    void ShootBall() {
+    public void ShootBall() {
         GameObject ball = Instantiate(ballPrefab, shootPoint.position, Quaternion.identity);
         Rigidbody ballRb = ball.GetComponent<Rigidbody>();
 
@@ -68,7 +68,7 @@ public class AI : MonoBehaviour {
     /// <param name="target">La position choisie par l'ia pour lancer le ballon</param>
     /// <param name="preferHighArc">Quelle sorte de trajectoire à utiliser selon la difficulté de l'ia, haute ou basse</param>
     /// <returns>La vélocité qui permet au ballon d'atteindre un point choisie par l'ia</returns>
-    Vector3 CalculateLaunchVelocity(Vector3 target, bool preferHighArc) {
+    private Vector3 CalculateLaunchVelocity(Vector3 target, bool preferHighArc) {
         Vector3 toTarget = target - shootPoint.position;
         Vector3 toTargetXZ = new Vector3(toTarget.x, 0, toTarget.z);
 
@@ -128,7 +128,7 @@ public class AI : MonoBehaviour {
         DrawTrajectory(shootPoint.position, targetHoop.position);
     }
 
-    void DrawTrajectory(Vector3 startPoint, Vector3 targetPoint) {
+    private void DrawTrajectory(Vector3 startPoint, Vector3 targetPoint) {
         Vector3 velocity = CalculateLaunchVelocity(targetPoint, true);
 
         Vector3 previousPoint = startPoint;
