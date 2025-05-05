@@ -22,6 +22,9 @@ public class GameMaster : MonoBehaviour {
     [SerializeField]
     private AI ai;
 
+    [SerializeField]
+    private AudioSource audio;
+
     private void Awake() {
         Instance = this;
     }
@@ -39,23 +42,21 @@ public class GameMaster : MonoBehaviour {
         StartNextTurn();
     }
 
-    public void OnScore(bool real) {
+    public void OnScore() {
         if (!gameActive) return;
 
-        if (real) {
-            if (playerTurn) {
-                playerScore++;
-                PointDashboard.Instance.IncrementerPoint(1);
-            }
-            else {
-                aiScore++;
-                PointDashboard.Instance.IncrementerPoint(2);
-            }
-            
-            CheckWinCondition();
+        if (playerTurn) {
+            playerScore++;
+            PointDashboard.Instance.IncrementerPoint(1);
         }
-
+        else {
+            aiScore++;
+            PointDashboard.Instance.IncrementerPoint(2);
+        }
+            
+        CheckWinCondition();
         playerTurn = !playerTurn;
+        audio.Play();
         StartNextTurn();
     }
 
@@ -70,12 +71,17 @@ public class GameMaster : MonoBehaviour {
         }
     }
 
+    public void StartNextTurnMiss() {
+        playerTurn = !playerTurn;
+        StartNextTurn();
+    }
+
     private void StartNextTurn() {
         if (!gameActive) return;
 
         if (playerTurn) {
             Transform spawnPoint = playerTransform;
-            Vector3 forwardOffset = spawnPoint.forward * 0.3f;
+            Vector3 forwardOffset = spawnPoint.forward * 1f;
             Vector3 spawnPosition = spawnPoint.position + forwardOffset;
 
             GameObject newBall = Instantiate(ballPrefab, spawnPosition, Quaternion.identity);

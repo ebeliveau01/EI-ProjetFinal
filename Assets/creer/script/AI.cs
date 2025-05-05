@@ -10,7 +10,7 @@ public class AI : MonoBehaviour {
     [SerializeField]
     private Transform targetHoop;
     
-    private enum Difficulty { EASY, MEDIUM, HARD, DEBUG }
+    private enum Difficulty { MEDIUM, HARD, IMPOSSIBLE }
 
     [SerializeField]
     private Difficulty difficulty = Difficulty.MEDIUM;
@@ -37,17 +37,14 @@ public class AI : MonoBehaviour {
         float errorRange = 0f;
 
         switch (difficulty) {
-            case Difficulty.EASY:
-                errorRange = 1f;
-                break;
             case Difficulty.MEDIUM:
                 errorRange = 0.5f;
                 break;
             case Difficulty.HARD:
-                errorRange = 0.1f;
+                errorRange = 0.2f;
                 break;
-            case Difficulty.DEBUG:
-                errorRange = 0f;
+            case Difficulty.IMPOSSIBLE:
+                errorRange = 0.05f;
                 break;
         }
 
@@ -93,12 +90,9 @@ public class AI : MonoBehaviour {
 
         float sqrt = Mathf.Sqrt(underTheSqrt);
 
-        float angleLow = Mathf.Atan((speedSquared - sqrt) / (gravity * x));
         float angleHigh = Mathf.Atan((speedSquared + sqrt) / (gravity * x));
 
-        // TODO => Choose which angle either low or high to choose and when to choose each one
-        // float chosenAngle = preferHighArc ? angleHigh : angleLow;
-        float chosenAngle = difficulty == Difficulty.EASY ? angleLow: angleHigh;
+        float chosenAngle = angleHigh;
 
         Vector3 velocity = toTargetXZ.normalized * launchSpeed * Mathf.Cos(chosenAngle);
         velocity.y = launchSpeed * Mathf.Sin(chosenAngle);
