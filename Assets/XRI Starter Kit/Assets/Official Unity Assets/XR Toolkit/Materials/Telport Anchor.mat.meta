@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: fd3c5d8fce991e04f9c11109dde95b3b
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 170222
+  packageName: XR Interaction ToolKit Starter Kit
+  packageVersion: 1.6.250208
+  assetPath: Assets/XRI Starter Kit/Assets/Official Unity Assets/XR Toolkit/Materials/Telport
+    Anchor.mat
+  uploadId: 731461

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: c1800acf6366418a9b5f610249000331
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 170222
+  packageName: XR Interaction ToolKit Starter Kit
+  packageVersion: 1.6.250208
+  assetPath: Assets/XRI Starter Kit/Assets/Official Unity Assets/XR Toolkit/Prefabs/Interactors/Teleport
+    Interactor.prefab
+  uploadId: 731461

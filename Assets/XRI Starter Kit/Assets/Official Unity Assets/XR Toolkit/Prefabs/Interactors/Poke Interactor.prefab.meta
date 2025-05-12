@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 27024f5809f4a4347b9cd7f26a1bdf93
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 170222
+  packageName: XR Interaction ToolKit Starter Kit
+  packageVersion: 1.6.250208
+  assetPath: Assets/XRI Starter Kit/Assets/Official Unity Assets/XR Toolkit/Prefabs/Interactors/Poke
+    Interactor.prefab
+  uploadId: 731461
