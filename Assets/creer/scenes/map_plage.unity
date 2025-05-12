@@ -2446,6 +2446,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6678269571562373685, guid: 2f94427b8dd14ea498fd92aee3ec9f0f, type: 3}
+      propertyPath: m_TagString
+      value: mouvement
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -9080,6 +9084,10 @@ PrefabInstance:
       propertyPath: audio
       value: 
       objectReference: {fileID: 1570517178}
+    - target: {fileID: 491644334212448757, guid: 1ce6c98b53b2b1146a61b6ecfe735409, type: 3}
+      propertyPath: score2Win
+      value: 21
+      objectReference: {fileID: 0}
     - target: {fileID: 491644334212448757, guid: 1ce6c98b53b2b1146a61b6ecfe735409, type: 3}
       propertyPath: playerTransform
       value: 

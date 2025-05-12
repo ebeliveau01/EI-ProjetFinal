@@ -5,10 +5,10 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/creer/scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
-  - enabled: 1
+  - enabled: 0
     path: Assets/creer/scenes/TestBall.unity
     guid: 8336aa9bb97cfe342992665a6ae96621
   - enabled: 1
@@ -20,6 +20,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/creer/scenes/map_nature.unity
     guid: 5879358fcd58a5b44a9e25d3c54485c0
+  - enabled: 1
+    path: Assets/creer/scenes/map_plage.unity
+    guid: c7e6bc18527fbfd4ea90e05c8a1b4278
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 305296acc180e7c4d9dbd9dbdadd67e0, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}

@@ -58,10 +58,17 @@ public class GameMaster : MonoBehaviour {
     private AudioSource audio;
 
     /// <summary>
+    /// Le composant qui permet au joueur de bouger
+    /// </summary>
+    private GameObject goInteractible;
+
+    /// <summary>
     /// Méthode qui s'exécute au lancement du script
     /// </summary>
     private void Awake() {
         Instance = this;
+
+        goInteractible = GameObject.FindGameObjectWithTag("mouvement");
     }
 
     /// <summary>
@@ -69,6 +76,10 @@ public class GameMaster : MonoBehaviour {
     /// </summary>
     private void Start() {
         StartGame();
+
+        if (goInteractible == null) return;
+
+        goInteractible.SetActive(false);
     }
 
     /// <summary>
@@ -116,6 +127,8 @@ public class GameMaster : MonoBehaviour {
             gameActive = false;
             EndGame.Instance.Show(false, playerScore, aiScore);
         }
+
+        goInteractible.SetActive(true);
     }
 
     /// <summary>

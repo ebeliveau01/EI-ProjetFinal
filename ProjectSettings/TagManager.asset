@@ -7,6 +7,7 @@ TagManager:
   - Ball
   - dropdown
   - DistanceGrab
+  - mouvement
   layers:
   - Default
   - TransparentFX
